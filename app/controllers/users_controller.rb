@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
     # @users = User.all
     @photogs = User.select { |user| user.photog? }
@@ -18,9 +18,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
+    @user.update(user_params)
+    redirect_to user_path(@user)
   end
 
   def destroy

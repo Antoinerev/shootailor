@@ -1,0 +1,15 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :address %>
+  <%= f.input :avatar %>
+  <%= f.input :portfolio %>
+  <%= f.input :tags %>
+  <%= f.input :bio %>
+  <%= f.input :price %>
+  <%= f.input :photog, as: :boolean, disabled: true, hint: 'You cannot change your status' %>
+  <%= f.button :submit %>
+<% end %>
