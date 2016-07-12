@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :bookings
   end
 
+  mount Attachinary::Engine => "/attachinary"
+
 #            Prefix Verb   URI Pattern                                 Controller#Action
 #              root GET    /                                           pages#home
 #     user_bookings GET    /users/:user_id/bookings(.:format)          bookings#index
