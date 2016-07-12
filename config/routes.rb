@@ -24,40 +24,49 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => "/attachinary"
 
-#                   Prefix Verb   URI Pattern                                 Controller#Action
-#         new_user_session GET    /users/sign_in(.:format)                    devise/sessions#new
-#             user_session POST   /users/sign_in(.:format)                    devise/sessions#create
-#     destroy_user_session DELETE /users/sign_out(.:format)                   devise/sessions#destroy
-#            user_password POST   /users/password(.:format)                   devise/passwords#create
-#        new_user_password GET    /users/password/new(.:format)               devise/passwords#new
-#       edit_user_password GET    /users/password/edit(.:format)              devise/passwords#edit
-#                          PATCH  /users/password(.:format)                   devise/passwords#update
-#                          PUT    /users/password(.:format)                   devise/passwords#update
-# cancel_user_registration GET    /users/cancel(.:format)                     devise/registrations#cancel
-#        user_registration POST   /users(.:format)                            devise/registrations#create
-#    new_user_registration GET    /users/sign_up(.:format)                    devise/registrations#new
-#   edit_user_registration GET    /users/edit(.:format)                       devise/registrations#edit
-#                          PATCH  /users(.:format)                            devise/registrations#update
-#                          PUT    /users(.:format)                            devise/registrations#update
-#                          DELETE /users(.:format)                            devise/registrations#destroy
-#                     root GET    /                                           pages#home
-#            user_bookings GET    /users/:user_id/bookings(.:format)          bookings#index
-#                          POST   /users/:user_id/bookings(.:format)          bookings#create
-#         new_user_booking GET    /users/:user_id/bookings/new(.:format)      bookings#new
-#        edit_user_booking GET    /users/:user_id/bookings/:id/edit(.:format) bookings#edit
-#             user_booking GET    /users/:user_id/bookings/:id(.:format)      bookings#show
-#                          PATCH  /users/:user_id/bookings/:id(.:format)      bookings#update
-#                          PUT    /users/:user_id/bookings/:id(.:format)      bookings#update
-#                          DELETE /users/:user_id/bookings/:id(.:format)      bookings#destroy
-#                    users GET    /users(.:format)                            users#index
-#                          POST   /users(.:format)                            users#create
-#                 new_user GET    /users/new(.:format)                        users#new
-#                edit_user GET    /users/:id/edit(.:format)                   users#edit
-#                     user GET    /users/:id(.:format)                        users#show
-#                          PATCH  /users/:id(.:format)                        users#update
-#                          PUT    /users/:id(.:format)                        users#update
-#                          DELETE /users/:id(.:format)                        users#destroy
-#              attachinary        /attachinary                                Attachinary::Engine
+#                           Prefix Verb     URI Pattern                                 Controller#Action
+#                   bookings_index GET      /bookings/index(.:format)                   bookings#index
+#                    bookings_show GET      /bookings/show(.:format)                    bookings#show
+#                     bookings_new GET      /bookings/new(.:format)                     bookings#new
+#                  bookings_create GET      /bookings/create(.:format)                  bookings#create
+#                    bookings_edit GET      /bookings/edit(.:format)                    bookings#edit
+#                  bookings_update GET      /bookings/update(.:format)                  bookings#update
+#                 bookings_destroy GET      /bookings/destroy(.:format)                 bookings#destroy
+#                 new_user_session GET      /users/sign_in(.:format)                    devise/sessions#new
+#                     user_session POST     /users/sign_in(.:format)                    devise/sessions#create
+#             destroy_user_session DELETE   /users/sign_out(.:format)                   devise/sessions#destroy
+#                    user_password POST     /users/password(.:format)                   devise/passwords#create
+#                new_user_password GET      /users/password/new(.:format)               devise/passwords#new
+#               edit_user_password GET      /users/password/edit(.:format)              devise/passwords#edit
+#                                  PATCH    /users/password(.:format)                   devise/passwords#update
+#                                  PUT      /users/password(.:format)                   devise/passwords#update
+#         cancel_user_registration GET      /users/cancel(.:format)                     devise/registrations#cancel
+#                user_registration POST     /users(.:format)                            devise/registrations#create
+#            new_user_registration GET      /users/sign_up(.:format)                    devise/registrations#new
+#           edit_user_registration GET      /users/edit(.:format)                       devise/registrations#edit
+#                                  PATCH    /users(.:format)                            devise/registrations#update
+#                                  PUT      /users(.:format)                            devise/registrations#update
+#                                  DELETE   /users(.:format)                            devise/registrations#destroy
+# user_facebook_omniauth_authorize GET|POST /users/auth/facebook(.:format)              users/omniauth_callbacks#passthru
+#  user_facebook_omniauth_callback GET|POST /users/auth/facebook/callback(.:format)     users/omniauth_callbacks#facebook
+#                             root GET      /                                           pages#home
+#                    user_bookings GET      /users/:user_id/bookings(.:format)          bookings#index
+#                                  POST     /users/:user_id/bookings(.:format)          bookings#create
+#                 new_user_booking GET      /users/:user_id/bookings/new(.:format)      bookings#new
+#                edit_user_booking GET      /users/:user_id/bookings/:id/edit(.:format) bookings#edit
+#                     user_booking GET      /users/:user_id/bookings/:id(.:format)      bookings#show
+#                                  PATCH    /users/:user_id/bookings/:id(.:format)      bookings#update
+#                                  PUT      /users/:user_id/bookings/:id(.:format)      bookings#update
+#                                  DELETE   /users/:user_id/bookings/:id(.:format)      bookings#destroy
+#                            users GET      /users(.:format)                            users#index
+#                                  POST     /users(.:format)                            users#create
+#                         new_user GET      /users/new(.:format)                        users#new
+#                        edit_user GET      /users/:id/edit(.:format)                   users#edit
+#                             user GET      /users/:id(.:format)                        users#show
+#                                  PATCH    /users/:id(.:format)                        users#update
+#                                  PUT      /users/:id(.:format)                        users#update
+#                                  DELETE   /users/:id(.:format)                        users#destroy
+#                      attachinary          /attachinary                                Attachinary::Engine
 
 end
 
