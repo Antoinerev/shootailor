@@ -5,12 +5,13 @@
 <hr>
 
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <%= "#{@user.first_name}  #{@user.last_name}" %>
-      <%= " - photographer" if @user.photog? %>
-    </div>
-  </div>
+  <% if @user.photog? %>
+        <%= render 'photog_show_card' %>
+      <% else %>
+        <%= render 'client_show_card' %>
+      <% end %>
+
+
   <div class="row">
     <div class="col-xs-6 col-sm-2 col-sm-offset-4">
       <%= link_to "Back to index", users_path %>

@@ -7,7 +7,11 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <%= render 'photog_form' %>
+      <% if @user.photog? %>
+        <%= render 'photog_form' %>
+      <% else %>
+        <%= render 'client_form' %>
+      <% end %>
 
     </div>
   </div>
@@ -20,3 +24,4 @@
     </div>
   </div>
 </div>
+<%=  %>
