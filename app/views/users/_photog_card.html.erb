@@ -1,0 +1,11 @@
+
+
+<% @photogs.each do |photog| %>
+  <%= link_to user_path(photog.id) do %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <%= "#{photog.first_name}  #{photog.last_name} - photographer" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
