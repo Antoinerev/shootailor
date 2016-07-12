@@ -1,0 +1,19 @@
+<%= simple_form_for([current_user, @booking]) do |f| %>
+  <%= f.error_notification %>
+
+  <p><strong>Client:</strong><br>
+  <%= "#{current_user.first_name} #{current_user.last_name}" %></p>
+  <%= f.input :client_id, input_html: { value: current_user.id }, as: "hidden"  %>
+
+  <p><strong>Photographer:</strong><br>
+  <%= "#{@photog.first_name} #{@photog.last_name}" %></p>
+  <%= f.input :photog_id, input_html: { value: @photog.id }, as: "hidden" %>
+
+  <%= f.input :client_needs, placeholder: 'Describe your expectations' %>
+  <%= f.input :shooting_location, placeholder:'ex: Paris' %>
+  <%= f.input :shooting_on %>
+  <%= f.input :shooting_price, placeholder: 'your target price per hour' %>
+  <%= f.input :shooting_details, disabled: true, placeholder: "To be filled by the photographer" %>
+  <%= f.input :status, as:"hidden", value:"pending" %>
+  <%= f.button :submit %>
+<% end %>

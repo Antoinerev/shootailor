@@ -39,6 +39,6 @@
   <div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center" style="padding: 20px;">
     <%= "Typical hourly rate: #{@user.price} €" %>
     <br>
-    <%= link_to "BOOK ME", new_user_booking_path(current_user), class:"btn btn-danger" %>
+    <%= link_to "BOOK ME", new_user_booking_path(@user), class:"btn btn-danger" %>
   </div>
 </div>
