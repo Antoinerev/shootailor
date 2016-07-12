@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
-    <%= image_tag @user.picture, class:"profile-picture" %>
+    <div class="profile-picture">
+      <%= image_tag '@user.picture' %>
+    </div>
+
   </div>
 </div>
 
@@ -33,7 +36,9 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-sm-4 col-sm-offset-4 padded">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center" style="padding: 20px;">
+    <%= "Typical hourly rate: #{@user.price} €" %>
+    <br>
     <%= link_to "BOOK ME", new_user_booking_path(current_user), class:"btn btn-danger" %>
   </div>
 </div>
