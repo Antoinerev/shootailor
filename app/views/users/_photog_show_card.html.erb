@@ -1,6 +1,39 @@
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <%= "#{@user.first_name}  #{@user.last_name}" %>
-      <%= " - photographer" if @user.photog? %>
-    </div>
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">
+    <%= image_tag @user.picture, class:"profile-picture" %>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <%= "#{@user.first_name}  #{@user.last_name}" %>
+    <%= " - photographer" if @user.photog? %>
+    <br>
+    <%= "#{@user.email}" %>
+    <br>
+    Address:
+    <%= "#{@user.address}" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <h2>Portfolio</h2>
+    <%= image_tag 'http://unsplash.it/300/200' %>
+    <%= image_tag 'http://unsplash.it/300/200' %>
+    <%= image_tag 'http://unsplash.it/300/200' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    About me:
+    <p><%= "#{@user.bio}" %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4 padded">
+    <%= link_to "BOOK ME", new_user_booking_path(current_user), class:"btn btn-danger" %>
+  </div>
+</div>
