@@ -24,7 +24,7 @@
     <h2>Portfolio</h2>
     <%= image_tag 'http://unsplash.it/300/200' %>
 
-    <% @user.portfolio.each do |photo| %>
+    <% @user.portfolios.each do |photo| %>
       <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
     <% end %>
 
