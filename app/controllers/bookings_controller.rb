@@ -1,15 +1,21 @@
 class BookingsController < ApplicationController
 
-  # before_action :set_booking, only: []
+  before_action :set_booking, only: [:show, :update]
 
   def index
-    @bookings = Booking.select { |booking| booking.client_id == current_user.id }
-    @bookings_pending = Booking.select { |booking| booking.status == "pending" }
-    @bookings_accepted = Booking.select { |booking| booking.status == "accepted" }
-    @bookings_archived = Booking.select { |booking| booking.status == "archived" || "canceled" }
+    if current_user.photog?
+      @bookings = Booking.select { |booking| booking.photog_id == current_user.id }
+    else
+      @bookings = Booking.select { |booking| booking.client_id == current_user.id }
+    end
+    @bookings_pending = @bookings.select { |booking| booking.status == "pending" }
+    @bookings_accepted = @bookings.select { |booking| booking.status == "accepted" }
+    @bookings_archived = @bookings.select { |booking| booking.status == "canceled" }
   end
 
   def show
+    # @booking = Booking.find(params[:id])
+    set_client_and_photog
   end
 
   def new
@@ -31,6 +37,8 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking.update(status: booking_params[:status])
+    redirect_to user_bookings_path(current_user)
   end
 
   def destroy
@@ -44,5 +52,10 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+  end
+
+  def set_client_and_photog
+    @photog = User.find(@booking.photog_id)
+    @client = User.find(@booking.client_id)
   end
 end
