@@ -4,7 +4,7 @@
   background-size: cover !important;
   color: white;
   position: relative;
-  text-align: center;
+  // text-align: center;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   display: flex;
   align-items: center;
@@ -28,15 +28,17 @@
   left: 10px;
 }
 .card-description h2 {
-  font-size: 24px;
+  font-size: 30px;
 }
 .card-description p {
-  font-size: 13px;
+  font-size: 17px;
   }
 .card-link {
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   z-index:2;
   background: black;
