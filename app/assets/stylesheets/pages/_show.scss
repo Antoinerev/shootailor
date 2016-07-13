@@ -1,3 +1,6 @@
+.container-carousel {
+
+}
 .profile-header {
   display: flex;
   align-items: center;
@@ -6,4 +9,11 @@
 }
 .profile-info {
   padding-left: 40px;
+}
+.profile-price p {
+  font-size: 30px;
+  padding-left: 20px;
+}
+.profile-description {
+  padding-bottom: 50px;
 }
