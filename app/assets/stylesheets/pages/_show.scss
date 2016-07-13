@@ -1,0 +1,29 @@
+.container-carousel {
+
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.profile-info {
+  padding-left: 40px;
+}
+.profile-price p {
+  font-size: 30px;
+  padding-left: 20px;
+}
+.profile-description {
+  padding-bottom: 50px;
+}
+.carousel-inner{
+  height: 400px;
+  @media (max-width: $screen-xs) {
+    height: 200px;
+  }
+}
+.carousel-inner .item img {
+    position:relative;
+    transform: translateY(-25%);
+}

@@ -6,6 +6,13 @@
   width: 50px;
   border-radius: 50%;
 }
+.avatar-large-show {
+  width: 130px;
+  border-radius: 50%;
+  @media (max-width: $screen-xs) {
+    width: 50px;
+  }
+}
 .avatar-bordered {
   width: 30px;
   border-radius: 50%;
