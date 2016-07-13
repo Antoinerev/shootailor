@@ -59,7 +59,10 @@
     <% end %>
 
     <!-- Button (call-to-action) -->
+    <% if user_signed_in? %>
     <%= link_to t(".top_call_to_action", default: "My Bookings"), user_bookings_path(current_user.id), class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <% end %>
+
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
