@@ -8,7 +8,7 @@
             <h2><%= photog.first_name %> <%= photog.last_name %></h2>
             <p>#tag, #tag, #tag</p>
           </div>
-          <%= image_tag photog.picture, class: "card-user avatar"%>
+          <%= image_tag photog.profile_pict, class: "card-user avatar"%>
           <%= link_to user_path(photog.id) do %>
             <div class="card-link"></div>
           <% end %>
