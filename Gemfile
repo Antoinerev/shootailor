@@ -23,6 +23,7 @@ gem "cloudinary"
 gem "attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
+gem 'rails-assets-swipebox', source: 'https://rails-assets.org'
 
 group :development, :test do
   gem 'binding_of_caller'

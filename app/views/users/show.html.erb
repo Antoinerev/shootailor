@@ -3,7 +3,11 @@
         <%= render 'photog_show_card' %>
       <% else %>
         <%= render 'client_show_card' %>
-      <% end %>
+  <% end %>
+
+  <a href="https://unsplash.it/800/500" class="swipebox" title="My Caption">
+    <img src="https://unsplash.it/600/400" alt="image">
+  </a>
 
 
   <div class="row">
@@ -17,3 +21,14 @@
     <% end %>
   </div>
 </div>
+
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  ;( function( 'a' ) {
+
+    $( '.swipebox' ).swipebox();
+
+  } )( jQuery );
+});
+</script>
