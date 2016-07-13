@@ -1,14 +1,28 @@
 <div class="text-center">
-  <h1>Photographers index</h1>
-  <p>Find me in app/views/users/index.html.erb</p>
+  <h1>Photographers</h1>
+  <p>Find the right photographer for you</p>
 </div>
 <hr>
 <div class="container">
+  <% if @location_search  %>
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <%= link_to "See all", users_path, class:"btn btn-primary btn-xs" %>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <%= "Results for Photographers in #{@location_search}"%>
+
+        <hr>
+      </div>
+    </div>
+  <% end %>
   <%= render 'photog_card' %>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <%=  %>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 padded">
     </div>
   </div>
 </div>
