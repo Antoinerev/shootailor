@@ -11,13 +11,6 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
 
 #                           Prefix Verb     URI Pattern                                 Controller#Action
-#                   bookings_index GET      /bookings/index(.:format)                   bookings#index
-#                    bookings_show GET      /bookings/show(.:format)                    bookings#show
-#                     bookings_new GET      /bookings/new(.:format)                     bookings#new
-#                  bookings_create GET      /bookings/create(.:format)                  bookings#create
-#                    bookings_edit GET      /bookings/edit(.:format)                    bookings#edit
-#                  bookings_update GET      /bookings/update(.:format)                  bookings#update
-#                 bookings_destroy GET      /bookings/destroy(.:format)                 bookings#destroy
 #                 new_user_session GET      /users/sign_in(.:format)                    devise/sessions#new
 #                     user_session POST     /users/sign_in(.:format)                    devise/sessions#create
 #             destroy_user_session DELETE   /users/sign_out(.:format)                   devise/sessions#destroy

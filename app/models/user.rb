@@ -24,5 +24,11 @@ class User < ActiveRecord::Base
       end
   end
 
+  def profile_pict
+    self.avatar = nil if self.avatar ==""
+    default_pict = "http://res.cloudinary.com/dujnmeiiu/image/upload/v1468402123/empty-avatar_qeezog.jpg"
+    self.avatar || self.picture || default_pict
+  end
+
 
 end
