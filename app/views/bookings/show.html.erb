@@ -1,2 +1,38 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<div class="text-center">
+  <h1>Bookings #<%= @booking.id %></h1>
+  <p>Initiated on <%= "#{@booking.created_at.to_date}" %></p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <%= "Photoshoot date: #{@booking.shooting_on}" %>
+      <br>
+      <%= "Client: #{@client.first_name} #{@client.last_name}"  %>
+      <br>
+      <%= "Client request: #{@booking.client_needs}" %>
+      <br>
+      <%= "Photographer: #{@photog.first_name} #{@photog.last_name}" %>
+      <br>
+      <%= "Shooting in #{@booking.shooting_location}" %>
+      <hr>
+      <%= "Shooting price: #{@booking.shooting_price}" %>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <% if current_user.id == @booking.photog_id %>
+        <%= simple_form_for([current_user, @booking]) do |f| %>
+          <%= f.error_notification %>
+
+          <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
+          <%= f.button :submit, value:'Accept request',class:"btn btn-success" %>
+        <% end %>
+      <% else %>
+        <%= "Status: #{@booking.status}" %>
+      <br>
+      <% end %>
+    </div>
+  </div>
+</div>
