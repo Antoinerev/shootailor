@@ -3,7 +3,7 @@
 
     <div class="profile-header">
       <div class="profile-pic">
-        <%= image_tag @user.picture, class: "avatar-large-show" %>
+        <%= image_tag @user.profile_pict, class: "avatar-large-show" %>
       </div>
       <div class="profile-info">
         <h2><%= "#{@user.first_name}  #{@user.last_name}" %></h2>
@@ -18,59 +18,69 @@
   </div>
 </div>
 
+<% if @user.portfolios.first %>
+  <div class="row">
+    <div class="col-xs-12 text-center">
 
-<div class="row">
-  <div class="col-xs-12 text-center">
-    <div class="container-carousel">
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-      </ol>
+      <div class="container-carousel">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <%= cl_image_tag @user.portfolios.first.path %>
-          <div class="carousel-caption">
-            ...
-          </div>
-        </div>
-
-        <% @user.portfolios.each do |photo| %>
-          <div class="item">
-            <%= cl_image_tag photo.path %>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <%= cl_image_tag @user.portfolios.first.path %>
             <div class="carousel-caption">
               ...
             </div>
           </div>
-        <% end %>
 
-      </div>
+          <% @user.portfolios.each do |photo| %>
+            <div class="item">
+              <%= cl_image_tag photo.path %>
+              <div class="carousel-caption">
+                ...
+              </div>
+            </div>
+          <% end %>
 
-      <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+        </div>
 
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="row text-center" >
+    <div class="col-xs-12 col-sm-8 col-sm-offset-3 bg-grey" style="width: 50%; height: 70px;">
+      <div style="vertical-align: middle;"><h3>No portfolio uploaded yet</h3></div>
+    </div>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
     <div class="profile-description">
       <h3>About <%= @user.first_name %></h3>
       <p><%= "#{@user.bio}" %></p>
-      <%= link_to "Book #{@user.first_name} now", new_user_booking_path(@user), class:"btn btn-danger" %>
+      <% if @user.portfolios.first %>
+        <%= link_to "Book #{@user.first_name} now", new_user_booking_path(@user), class:"btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 </div>
