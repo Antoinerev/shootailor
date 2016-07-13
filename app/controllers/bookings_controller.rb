@@ -4,6 +4,9 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.select { |booking| booking.client_id == current_user.id }
+    @bookings_pending = Booking.select { |booking| booking.status == "pending" }
+    @bookings_accepted = Booking.select { |booking| booking.status == "accepted" }
+    @bookings_archived = Booking.select { |booking| booking.status == "archived" || "canceled" }
   end
 
   def show
@@ -12,6 +15,7 @@ class BookingsController < ApplicationController
   def new
     @photog = User.find(params[:user_id])
     @booking = Booking.new()
+    @client = current_user
   end
 
   def create

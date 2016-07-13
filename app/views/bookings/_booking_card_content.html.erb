@@ -1,0 +1,19 @@
+<%= link_to user_booking_path(client.id, booking.id) do %>
+  <div class="row" style="padding: 0px;">
+    <div class="col-xs-12">
+      <%= "#{booking.created_at.to_date}" %>
+      <br>
+      <%= "#{booking.client_needs}" %>
+      <br>
+      <%= "Photographer: #{photog.first_name} #{photog.last_name}" unless current_user.id == photog.id %>
+      <%= "Client: #{client.first_name} #{client.last_name}" unless current_user.id == client.id %>
+      <br>
+      <%= "Shooting in #{booking.shooting_location}" %>
+      <hr>
+    </div>
+  </div>
+<% end %>
+
+
+
+
