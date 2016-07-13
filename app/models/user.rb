@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :demands, class_name: 'Booking', foreign_key: 'client_id'
   has_many :shootings, class_name: 'Booking', foreign_key: 'photog_id'
 
-  has_attachments :portfolio, maximum: 6
+  has_attachments :portfolios, maximum: 6
 
   # Include default devise modules. Others available are:
    # :confirmable, :lockable, :timeoutable and :omniauthable
