@@ -8,11 +8,12 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Search form -->
-    <form action="/" class="navbar-wagon-search" method="get">
+    <form action="<%= users_path %>" class="navbar-wagon-search" method="get">
       <input type="text" class="navbar-wagon-search-input" name="location" placeholder="Search by location">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
+
     </form>
 
     <!-- Different navigation if login or not -->
