@@ -1,11 +1,21 @@
+<div class="row">
+  <% @photogs.each do |photog| %>
+    <%= link_to user_path(photog.id) do %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.portfolios.first.path %>');">
 
-
-<% @photogs.each do |photog| %>
-  <%= link_to user_path(photog.id) do %>
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <%= "#{photog.first_name}  #{photog.last_name} - photographer" %>
+          <div class="card-category">Popular</div>
+          <div class="card-description">
+            <h2><%= photog.first_name %> <%= photog.last_name %></h2>
+            <p>Very cool stuff, useful and smart</p>
+          </div>
+          <%= image_tag photog.picture, class: "card-user avatar"%>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
+
+
+
