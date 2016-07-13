@@ -14,6 +14,6 @@
   <%= f.input :shooting_on %>
   <%= f.input :shooting_price, placeholder: 'your target price per hour' %>
   <%= f.input :shooting_details, disabled: true, placeholder: "To be filled by the photographer" %>
-  <%= f.input :status, as:"hidden", value:"pending" %>
+  <%= f.input :status, as:"hidden", input_html: {value: 'pending'} %>
   <%= f.button :submit %>
 <% end %>
