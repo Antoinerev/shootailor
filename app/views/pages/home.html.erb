@@ -4,7 +4,7 @@
     <p>Live the moment, we capture it for you</p>
     <!-- <a class="btn btn-primary btn-lg">GET IT</a> -->
     <% if user_signed_in? %>
-      <%= link_to "Enter !", users_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "Find a photographer", users_path, class: "btn btn-primary btn-lg" %>
     <% else %>
       <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-lg" %>
     <% end %>
