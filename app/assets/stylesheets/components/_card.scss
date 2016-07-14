@@ -21,12 +21,25 @@
   left: 10px;
   font-size: 10px;
   text-transform: uppercase;
+  text-decoration: none;
 }
+
+.card-category a {
+  text-decoration: none !important;
+  color: white !important;
+}
+
 .card-description {
   position: absolute;
   bottom: 10px;
   left: 10px;
 }
+
+.card-description a {
+  text-decoration: none !important;
+  color: white !important;
+}
+
 .card-description h2 {
   font-size: 30px;
 }
@@ -45,6 +58,21 @@
   opacity: 0;
 }
 .card-link:hover{
+  opacity: 0.1;
+}
+
+.card-booking-link {
+  position: absolute;
+  top: 0;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.card-booking-link:hover{
   opacity: 0.1;
 }
 

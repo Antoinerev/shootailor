@@ -8,7 +8,9 @@ class BookingsController < ApplicationController
     else
       @bookings = Booking.select { |booking| booking.client_id == current_user.id }
     end
-    @bookings_pending = @bookings.select { |booking| booking.status == "pending" }
+    @bookings_pending = @bookings.select { |booking| booking.status == "new" }
+    @bookings_photog_upd = @bookings.select { |booking| booking.status == "photog_updated" }
+    @bookings_client_upd = @bookings.select { |booking| booking.status == "client_updated" }
     @bookings_accepted = @bookings.select { |booking| booking.status == "accepted" }
     @bookings_archived = @bookings.select { |booking| booking.status == "canceled" }
   end
