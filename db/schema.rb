@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712131010) do
+ActiveRecord::Schema.define(version: 20160714151646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160712131010) do
     t.string   "shooting_location"
     t.datetime "shooting_on"
     t.string   "shooting_price"
-    t.string   "shooting_details"
+    t.text     "shooting_details"
     t.string   "status"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
