@@ -1,30 +1,23 @@
 <div class="text-center">
-  <h1>Bookings #<%= @booking.id %></h1>
-  <p>Initiated on <%= "#{@booking.created_at.to_date}" %></p>
+
+  <h1><%= @title %></h1>
+  <p>Updated on <%= "#{@booking.updated_at.strftime('%a %e %b %Y')}" %></p>
 </div>
+<hr>
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <%= "Photoshoot date: #{@booking.shooting_on.strftime('%a %e %b %Y')}" %>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 grey-card">
+      <strong>Photoshoot on: </strong><%= @booking.shooting_on.strftime('%a %e %b %Y') %>
       <br>
-      <%= "Updated on: #{@booking.updated_at.strftime('%a %e %b %Y')}" %>
+      <strong>Location: </strong><%= @booking.shooting_location %>
       <br>
-      Status: <%= @booking.status.include?('updated') ? "updated" : @booking.status %>
-      <br>
-      <br>
-      <%= "Client: #{@client.first_name} #{@client.last_name}"  %>
-      <br>
-      <%= "Client request: #{@booking.client_needs}" %>
-      <br>
-      <br>
-      <%= "Photographer: #{@photog.first_name} #{@photog.last_name}" %>
-      <br>
-      <%= "Shooting in #{@booking.shooting_location}" %>
+      <strong>For: </strong><%= @booking.client_needs %>
       <hr>
-      <%= "Shooting price: #{@booking.shooting_price}" %>
-      <hr>
-      <%= "Shooting details: #{@booking.shooting_details}" %>
+      <strong>Proposed price: </strong><%= @booking.shooting_price %> €
+      <br>
+      <strong>Shooting details: </strong>
+      <br><%= @booking.shooting_details %>
       <hr>
     </div>
   </div>
@@ -34,9 +27,13 @@
         <%= simple_form_for([current_user, @booking]) do |f| %>
           <%= f.error_notification %>
 
+          <%= f.input :shooting_details, as:"hidden", input_html: {value: @booking.shooting_details} %>
           <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
           <%= f.button :submit, value:'Accept request',class:"btn btn-success" %>
         <% end %>
+      <% else %>
+        <%= link_to "Cancel request", user_booking_path(@booking.client_id, @booking.id), method: :delete, class:'btn btn-danger btn-sm' %>
+        <%= link_to "Modify request", edit_user_booking_path(@booking.client_id, @booking.id), class:'btn btn-warning btn-sm' %>
       <% end %>
       <%= link_to "Back", user_bookings_path(current_user), class:'btn btn-primary btn-sm' %>
     </div>
