@@ -1,8 +1,8 @@
 
 
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>'); margin: 2px;">
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>'); margin: 2px;">
 
-    <div class="card-category">Shooting on: <%= booking.shooting_on.strftime('%a %w %b %Y') %></div>
+    <div class="card-category">Shooting on: <%= booking.shooting_on.strftime('%a %e %b %Y') %></div>
     <div class="card-description">
 
       <p>For: <%= booking.client_needs %></p>
@@ -15,7 +15,7 @@
                 <%= f.error_notification %>
 
                 <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
-                <%= f.button :submit, value:'Accept',class:"btn btn-success btn-xs" %>
+                <%= f.button :submit, value:'Accept',class:"btn btn-transparent btn-xs" %>
               <% end %>
             </div>
             <div class="flex-item">
@@ -23,7 +23,7 @@
                 <%= f.error_notification %>
 
                 <%= f.input :status, input_html: {value: 'photog_updated'}, as:'hidden' %>
-                <%= f.button :submit, value:'Reply',class:"btn btn-warning btn-xs" %>
+                <%= f.button :submit, value:'Reply',class:"btn btn-transparent btn-xs" %>
               <% end %>
             </div>
             <div class="flex-item">
@@ -31,7 +31,7 @@
                 <%= f.error_notification %>
 
                 <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
-                <%= f.button :submit, value:'Refuse',class:"btn btn-danger btn-xs" %>
+                <%= f.button :submit, value:'Refuse',class:"btn btn-transparent btn-xs" %>
               <% end %>
             </div>
           </div>
