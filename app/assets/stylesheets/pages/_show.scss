@@ -1,3 +1,22 @@
+.page-background {
+  color: white;
+  text-align: center;
+  height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+}
+.page-header {
+  background: rgba(0,0,0,0.6);
+  margin: 0px;
+  padding: 20px 0;
+  h1 {
+    margin: 0px;
+  }
+}
+.page-body {
+  padding-top: 30px;
+}
+
 .profile-header {
   display: flex;
   align-items: center;
@@ -24,3 +43,4 @@
     position:relative;
     transform: translateY(-25%);
 }
+

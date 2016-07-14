@@ -1,24 +1,29 @@
-<div class="text-center">
+<div class="page-background" style="background: #E5EAED;">
+
+  <div class="page-header text-center">
     <h1>Find your photographer</h1>
   </div>
-  <hr>
-  <div class="container">
-    <% if @location_search  %>
-      <div class="row text-center">
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-          <%= link_to "See all", users_path, class:"btn btn-primary btn-xs" %>
+  <div class="page-body">
+    <div class="container">
+      <% if @location_search  %>
+        <div class="row text-center">
+          <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <%= link_to "See all", users_path, class:"btn btn-primary btn-xs" %>
+          </div>
         </div>
-      </div>
 
-      <div class="row text-center">
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-          <%= "Results for Photographers in #{@location_search}"%>
+        <div class="row text-center">
+          <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <%= "Results for Photographers in #{@location_search}"%>
 
-          <hr>
+            <hr>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
 
-    <%= render 'photog_card' %>
+      <%= render 'photog_card' %>
+
+    </div>
+  </div>
+
 </div>
-
