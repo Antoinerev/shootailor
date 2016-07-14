@@ -7,7 +7,7 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-*= require swipebox
+@import "swipebox";
 
 // Your CSS
 @import "layout/index";
