@@ -8,8 +8,9 @@
   <% @bookings_new.each do |booking| %>
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
+    <% booking.status == "new" ? booking_alert = "<p style='color: red;'>NEW!</p>".html_safe : booking_alert ="<p style='color: yellow;'>UPDATED!</p>".html_safe %>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-      <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+      <%= render 'booking_card_content', booking: booking, photog: photog, client: client, booking_alert: booking_alert %>
     </div>
   <% end %>
 </div>
@@ -23,8 +24,25 @@
   <% @bookings_accepted.each do |booking| %>
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
+    <% booking_alert = "" %>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-      <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+      <%= render 'booking_card_content', booking: booking, photog: photog, client: client, booking_alert: booking_alert %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row text-center">
+  <div class="col-xs-12">
+    <p><strong>Waiting for reply</strong></p>
+  </div>
+</div>
+<div class="row" style="height: 200px;">
+  <% @bookings_pending.each do |booking| %>
+    <% photog = User.find(booking.photog_id) %>
+    <% client = User.find(booking.client_id) %>
+    <% booking_alert = "<p style='color: green;'>pending</p>".html_safe %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <%= render 'booking_card_content', booking: booking, photog: photog, client: client, booking_alert: booking_alert %>
     </div>
   <% end %>
 </div>
@@ -34,13 +52,14 @@
     <p><strong>Archived bookings</strong></p>
   </div>
 </div>
-  <div class="row" style="height: 200px;">
-    <% @bookings_archived.each do |booking| %>
-      <% photog = User.find(booking.photog_id) %>
-      <% client = User.find(booking.client_id) %>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
-      </div>
-    <% end %>
-  </div>
+<div class="row" style="height: 200px;">
+  <% @bookings_archived.each do |booking| %>
+    <% photog = User.find(booking.photog_id) %>
+    <% client = User.find(booking.client_id) %>
+    <% booking_alert = "Archived" %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <%= render 'booking_card_content', booking: booking, photog: photog, client: client, booking_alert: booking_alert %>
+    </div>
+  <% end %>
+</div>
 </div>

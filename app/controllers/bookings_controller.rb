@@ -4,17 +4,17 @@ class BookingsController < ApplicationController
 
   def index
     if current_user.photog?
-      @bookings = Booking.select { |booking| booking.photog_id == current_user.id }
-      @bookings_new = @bookings.select { |booking| booking.status == "new" || "client_updated"}
-      # @bookings_new << @bookings.select { |booking| booking.status ==  }
+      @bookings = Booking.where(photog_id: current_user.id)
+      @bookings_new = @bookings.where(status: ["new", "client_updated"])
+      @bookings_pending = @bookings.where(status: "photog_updated")
     else
-      @bookings = Booking.select { |booking| booking.client_id == current_user.id }
-      @bookings_new = @bookings.select { |booking| booking.status == "new" || "photog_updated" }
-      # @bookings_new <<@ @bookings.select { |booking| booking.status ==  }
+      @bookings = Booking.where(client_id: current_user.id)
+      @bookings_new = @bookings.where(status: ["new", "photog_updated"])
+      @bookings_pending = @bookings.where(status: "client_updated")
     end
 
-    @bookings_accepted = @bookings.select { |booking| booking.status == "accepted" }
-    @bookings_archived = @bookings.select { |booking| booking.status == "canceled" }
+    @bookings_accepted = @bookings.where(status: "accepted")
+    @bookings_archived = @bookings.where(status: "archived")
   end
 
   def show

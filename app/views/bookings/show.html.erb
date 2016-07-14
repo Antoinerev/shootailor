@@ -6,11 +6,17 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <%= "Photoshoot date: #{@booking.shooting_on}" %>
+      <%= "Photoshoot date: #{@booking.shooting_on.strftime('%a %e %b %Y')}" %>
+      <br>
+      <%= "Updated on: #{@booking.updated_at.strftime('%a %e %b %Y')}" %>
+      <br>
+      Status: <%= @booking.status.include?('updated') ? "updated" : @booking.status %>
+      <br>
       <br>
       <%= "Client: #{@client.first_name} #{@client.last_name}"  %>
       <br>
       <%= "Client request: #{@booking.client_needs}" %>
+      <br>
       <br>
       <%= "Photographer: #{@photog.first_name} #{@photog.last_name}" %>
       <br>
@@ -18,10 +24,12 @@
       <hr>
       <%= "Shooting price: #{@booking.shooting_price}" %>
       <hr>
+      <%= "Shooting details: #{@booking.shooting_details}" %>
+      <hr>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4" >
       <% if current_user.id == @booking.photog_id %>
         <%= simple_form_for([current_user, @booking]) do |f| %>
           <%= f.error_notification %>
@@ -29,10 +37,8 @@
           <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
           <%= f.button :submit, value:'Accept request',class:"btn btn-success" %>
         <% end %>
-      <% else %>
-        <%= "Status: #{@booking.status}" %>
-      <br>
       <% end %>
+      <%= link_to "Back", user_bookings_path(current_user), class:'btn btn-primary btn-sm' %>
     </div>
   </div>
 </div>
