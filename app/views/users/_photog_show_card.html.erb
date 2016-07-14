@@ -34,7 +34,10 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           <div class="item active">
-            <%= cl_image_tag @user.portfolios.first.path %>
+            <a href="<%= cl_image_path @user.portfolios.first.path %>" class="swipebox" title="<%= @user.first_name %> <%= @user.last_name %>">
+              <%= cl_image_tag @user.portfolios.first.path %>
+            </a>
+
             <div class="carousel-caption">
               ...
             </div>
@@ -42,7 +45,9 @@
 
           <% @user.portfolios.each do |photo| %>
             <div class="item">
+            <a href="<%= cl_image_path photo.path %>" class="swipebox" title="<%= @user.first_name %> <%= @user.last_name %>">
               <%= cl_image_tag photo.path %>
+            </a>
               <div class="carousel-caption">
                 ...
               </div>

@@ -3,8 +3,7 @@
         <%= render 'photog_show_card' %>
       <% else %>
         <%= render 'client_show_card' %>
-      <% end %>
-
+  <% end %>
 
   <div class="row">
     <div class="col-xs-6 col-sm-2 col-sm-offset-4">
@@ -17,3 +16,13 @@
     <% end %>
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script type="text/javascript">
+  $(document).ready(function() {
+        $( '.swipebox' ).swipebox();
+  });
+  </script>
+<% end %>
+
+
