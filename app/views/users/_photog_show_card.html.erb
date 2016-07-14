@@ -87,7 +87,7 @@
     <div class="profile-description text-center">
       <h3>About <%= @user.first_name %></h3>
       <p><%= "#{@user.bio}" %></p>
-      <% if @user.portfolios.first %>
+      <% if @user != current_user && @user.portfolios.first %>
         <%= link_to "Book #{@user.first_name} now", new_user_booking_path(@user), class:"btn btn-danger" %>
       <% end %>
     </div>
