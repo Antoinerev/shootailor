@@ -8,10 +8,16 @@
   align-items: center;
   justify-content: center;
 }
+.banner-content {
+  background: rgba(0,0,0,0.7);
+  width: 100%;
+  padding: 30px 0;
+}
 .banner h1 {
   font-size: 50px;
   font-weight: bold;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  margin-top: 0px;
 }
 .banner p {
   font-size: 20px;
