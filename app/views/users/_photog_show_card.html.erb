@@ -9,9 +9,13 @@
         <h2><%= "#{@user.first_name}  #{@user.last_name}" %></h2>
         <p><%= "#{@user.address}" %></p>
       </div>
-      <div class="profile-price">
-        <p><%= @user.price %> €/h</p>
-        <p><%= link_to "Book now", new_user_booking_path(@user), class:"btn btn-danger" %></p>
+      <div class="profile-price" style="flex: 1 0 auto;">
+        <p style="padding-left: 10px;"><%= @user.price %> €/h</p>
+        <% if @user == current_user %>
+          <%= link_to "Edit", edit_user_path(@user), class:"btn btn-primary", style:"width: 100%;" %>
+        <% else %>
+          <%= link_to "Book now", new_user_booking_path(@user), class:"btn btn-danger", style:"width: 100%;" %>
+        <% end %>
       </div>
     </div>
 
@@ -75,7 +79,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-    <div class="profile-description">
+    <div class="profile-description text-center">
       <h3>About <%= @user.first_name %></h3>
       <p><%= "#{@user.bio}" %></p>
       <% if @user.portfolios.first %>
