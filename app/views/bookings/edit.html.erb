@@ -1,2 +1,46 @@
-<h1>Bookings#edit</h1>
-<p>Find me in app/views/bookings/edit.html.erb</p>
+<div class="text-center">
+  <h1><%= @title %></h1>
+</div>
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4 grey-card">
+      <strong>Photoshoot on: </strong><%= @booking.shooting_on.strftime('%a %e %b %Y') %>
+      <br>
+      <strong>Location: </strong><%= @booking.shooting_location %>
+      <br>
+
+      <%= simple_form_for([@client, @booking]) do |f| %>
+        <%= f.error_notification %>
+        <% if current_user.id == @booking.client_id %>
+          <br>
+          <%= f.input :client_needs, placeholder: @booking.client_needs, label: 'For:' %>
+          <br>
+          <%= f.input :shooting_price, placeholder: @booking.shooting_price %>
+          <br>
+          <%= f.input :shooting_details, as:"hidden", input_html: {value: @booking.shooting_details} %>
+          <%= f.input :status, as:"hidden", input_html: {value: 'client_updated'} %>
+          <strong><%= "#{@photog.first_name}'s comment:" %></strong>
+          <br><%= @booking.shooting_details %>
+          <hr>
+        <% else %>
+          <strong>For: </strong><%= @booking.client_needs %>
+          <hr>
+          <strong>Proposed price: </strong><%= @booking.shooting_price %> €
+          <br>
+          <% default = @booking.shooting_details || "Answer this request" %>
+
+          <%= f.input :shooting_details, placeholder: default, label: "Comment this request:" %>
+          <%= f.input :status, as:"hidden", input_html: {value: 'photog_updated'} %>
+
+        <% end %>
+
+        <%= f.button :submit, class:"btn btn-success btn-sm" %>
+        <%= link_to "Back", user_bookings_path(current_user), class:'btn btn-primary btn-sm' %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

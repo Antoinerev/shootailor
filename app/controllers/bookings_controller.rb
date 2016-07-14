@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
 
-  before_action :set_booking, only: [:show, :update]
+  before_action :set_booking, only: [:show, :update, :edit, :destroy]
 
   def index
     if current_user.photog?
@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
   def show
     # @booking = Booking.find(params[:id])
     set_client_and_photog
+    set_title
   end
 
   def new
@@ -38,14 +39,20 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    set_client_and_photog
+    set_title
   end
 
   def update
     @booking.update(status: booking_params[:status])
+    @booking.update(shooting_details: booking_params[:shooting_details])
+    # @booking.update(booking_params)
     redirect_to user_bookings_path(current_user)
   end
 
   def destroy
+    @booking.destroy
+    redirect_to user_bookings_path(current_user)
   end
 
   private
@@ -61,5 +68,13 @@ class BookingsController < ApplicationController
   def set_client_and_photog
     @photog = User.find(@booking.photog_id)
     @client = User.find(@booking.client_id)
+  end
+
+  def set_title
+    if current_user == @photog
+      @title = "Request from #{@client.first_name.capitalize} #{@client.last_name.capitalize}"
+    else
+      @title = "Request to #{@photog.first_name.capitalize} #{@photog.last_name.capitalize}"
+    end
   end
 end

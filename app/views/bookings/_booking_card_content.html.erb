@@ -4,10 +4,9 @@
 
     <div class="card-category text-left"><%= booking_alert %>
       <p >Shoot on: <%= booking.shooting_on.strftime('%a %e %b %Y') %></p>
-    </div>
-    <div class="card-description">
-
-      <!-- <p>For: <%= booking.client_needs %></p> -->
+      <br>
+      <p>For: <%= booking.client_needs %> </p>
+      <p>Price: <%= booking.shooting_price %> €</p>
       <p>
         <% if current_user.photog? %>
           <%= "With: #{client.first_name} #{client.last_name}" %>
@@ -15,6 +14,8 @@
           <%= "With: #{photog.first_name} #{photog.last_name}" %>
         <% end %>
       </p>
+    </div>
+    <div class="card-description">
       <!-- <p>Details: <%= booking.shooting_details %></p> -->
         <% if current_user.id == booking.photog_id %>
           <div class="flex-container">
@@ -26,13 +27,12 @@
                 <%= f.button :submit, value:'Accept',class:"btn btn-transparent btn-xs" %>
               <% end %>
             </div>
-            <div class="flex-item">
-              <%= simple_form_for([current_user, booking]) do |f| %>
-                <%= f.error_notification %>
+            <div class="flex-item" >
 
-                <%= f.input :status, input_html: {value: 'photog_updated'}, as:'hidden' %>
-                <%= f.button :submit, value:'Reply',class:"btn btn-transparent btn-xs" %>
-              <% end %>
+              <div class="btn btn-transparent btn-xs">
+                <%= link_to "Reply", edit_user_booking_path(booking.client_id, booking.id) %>
+              </div>
+
             </div>
             <div class="flex-item">
               <%= simple_form_for([current_user, booking]) do |f| %>
@@ -44,7 +44,8 @@
             </div>
           </div>
         <% else %>
-          <%= "Status: #{booking.status}" %>
+          <%= "#{photog.first_name} says:" %>
+          <%= booking.shooting_details %>
           <br>
         <% end %>
     </div>
