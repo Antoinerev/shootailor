@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   def index
     # @users = User.all
     @photogs = User.select { |user| user.photog? }
-
-
     if params[:location]
       @location_search = params[:location].downcase
       @photogs = @photogs.select { |photog| photog.address.downcase.include?(@location_search) }

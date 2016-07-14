@@ -30,5 +30,9 @@ class User < ActiveRecord::Base
     self.avatar || self.picture || default_pict
   end
 
+  def photog_card_background
+    default_card_bg = "http://res.cloudinary.com/dujnmeiiu/image/upload/v1468421263/11600983135_05ea939613_o_uxwrv2.jpg"
+    self.portfolios.first ? self.portfolios.first.path : default_card_bg
+  end
 
 end

@@ -1,27 +1,46 @@
-
-<div class="row">
-  <div class="col-xs-12 col-sm-4">
-    <p><strong>Pending bookings</strong></p>
-    <% @bookings_pending.each do |booking| %>
-      <% photog = User.find(booking.photog_id) %>
-      <% client = User.find(booking.client_id) %>
-      <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
-    <% end %>
+<div class="row text-center">
+  <div class="col-xs-12">
+    <p><strong>Booking requests</strong></p>
   </div>
-  <div class="col-xs-12 col-sm-4">
-    <p><strong>Accepted bookings</strong></p>
+</div>
+
+<div class="row text-center">
+  <% @bookings_pending.each do |booking| %>
+    <% photog = User.find(booking.photog_id) %>
+    <% client = User.find(booking.client_id) %>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row text-center">
+  <div class="col-xs-12">
+    <p><strong>Upcoming shootings</strong></p>
+  </div>
+</div>
+  <div class="row">
     <% @bookings_accepted.each do |booking| %>
       <% photog = User.find(booking.photog_id) %>
       <% client = User.find(booking.client_id) %>
-      <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+      </div>
     <% end %>
   </div>
-  <div class="col-xs-12 col-sm-4">
+
+<div class="row text-center">
+  <div class="col-xs-12">
     <p><strong>Archived bookings</strong></p>
+  </div>
+</div>
+  <div class="row">
     <% @bookings_archived.each do |booking| %>
       <% photog = User.find(booking.photog_id) %>
       <% client = User.find(booking.client_id) %>
-      <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+      </div>
     <% end %>
   </div>
 </div>

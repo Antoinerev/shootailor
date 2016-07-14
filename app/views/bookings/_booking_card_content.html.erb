@@ -1,18 +1,56 @@
-<%= link_to user_booking_path(client.id, booking.id) do %>
-  <div class="row" style="padding: 0px;">
-    <div class="col-xs-12">
-      <%= "#{booking.created_at.to_date}" %>
-      <br>
-      <%= "#{booking.client_needs}" %>
-      <br>
-      <%= "Photographer: #{photog.first_name} #{photog.last_name}" unless current_user.id == photog.id %>
-      <%= "Client: #{client.first_name} #{client.last_name}" unless current_user.id == client.id %>
-      <br>
-      <%= "Shooting in #{booking.shooting_location}" %>
-      <hr>
+
+
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>'); margin: 2px;">
+
+    <div class="card-category">Shooting on: <%= booking.shooting_on.strftime('%a %w %b %Y') %></div>
+    <div class="card-description">
+
+      <p>For: <%= booking.client_needs %></p>
+      <p><%= "With: #{photog.first_name} #{photog.last_name}" %></p>
+      <p>Details: <%= booking.shooting_details %></p>
+        <% if current_user.id == booking.photog_id %>
+          <div class="flex-container">
+            <div class="flex-item">
+              <%= simple_form_for([current_user, booking]) do |f| %>
+                <%= f.error_notification %>
+
+                <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
+                <%= f.button :submit, value:'Accept',class:"btn btn-success btn-xs" %>
+              <% end %>
+            </div>
+            <div class="flex-item">
+              <%= simple_form_for([current_user, booking]) do |f| %>
+                <%= f.error_notification %>
+
+                <%= f.input :status, input_html: {value: 'photog_updated'}, as:'hidden' %>
+                <%= f.button :submit, value:'Reply',class:"btn btn-warning btn-xs" %>
+              <% end %>
+            </div>
+            <div class="flex-item">
+              <%= simple_form_for([current_user, booking]) do |f| %>
+                <%= f.error_notification %>
+
+                <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
+                <%= f.button :submit, value:'Refuse',class:"btn btn-danger btn-xs" %>
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <%= "Status: #{@booking.status}" %>
+          <br>
+        <% end %>
     </div>
+    <%= image_tag photog.profile_pict, class: "card-user avatar"%>
+    <%= link_to user_booking_path(client.id, booking.id) do %>
+      <div class="card-link"></div>
+    <% end %>
+
+
+
+
   </div>
-<% end %>
+
+
 
 
 
