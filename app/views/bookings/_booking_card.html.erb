@@ -1,11 +1,11 @@
 <div class="row text-center">
   <div class="col-xs-12">
-    <p><strong>Booking requests</strong></p>
+    <p><strong>New and updated booking requests</strong></p>
   </div>
 </div>
 
 <div class="row text-center" style="height: 200px;">
-  <% @bookings_pending.each do |booking| %>
+  <% @bookings_new.each do |booking| %>
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -19,15 +19,15 @@
     <p><strong>Upcoming shootings</strong></p>
   </div>
 </div>
-  <div class="row" style="height: 200px;">
-    <% @bookings_accepted.each do |booking| %>
-      <% photog = User.find(booking.photog_id) %>
-      <% client = User.find(booking.client_id) %>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
-      </div>
-    <% end %>
-  </div>
+<div class="row" style="height: 200px;">
+  <% @bookings_accepted.each do |booking| %>
+    <% photog = User.find(booking.photog_id) %>
+    <% client = User.find(booking.client_id) %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <%= render 'booking_card_content', booking: booking, photog: photog, client: client %>
+    </div>
+  <% end %>
+</div>
 
 <div class="row text-center">
   <div class="col-xs-12">
