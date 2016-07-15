@@ -54,10 +54,8 @@ class BookingsController < ApplicationController
     @booking.destroy
     respond_to do |format|
       format.html { redirect_to user_bookings_path(current_user) }
-      format.js  # <-- will render `app/views/reviews/create.js.erb`
+      format.js  # <-- will render `app/views/reviews/destroy.js.erb`
     end
-
-
   end
 
   private
