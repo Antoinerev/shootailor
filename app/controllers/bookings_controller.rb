@@ -46,6 +46,8 @@ class BookingsController < ApplicationController
   def update
     @booking.update(status: booking_params[:status])
     @booking.update(shooting_details: booking_params[:shooting_details])
+    @booking.update(client_needs: booking_params[:client_needs])
+    @booking.update(shooting_price: booking_params[:shooting_price])
     # @booking.update(booking_params)
     redirect_to user_bookings_path(current_user)
   end
