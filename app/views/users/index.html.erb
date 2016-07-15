@@ -28,15 +28,35 @@
     </div>
   </div>
 
-  <div class="googlemap" style="margin: 50px;">
-  <div id="map" style="width: 100%; height: 600px;"></div>
+  <div class="googlemap" style="margin: 50px 80px;">
+    <div id="map" style="width: 100%; height: 600px;"></div>
   </div>
 
   <% content_for(:after_js) do %>
     <%= javascript_tag do %>
       $(document).on('ready', function() {
+
+        var mapOptions =
+        {
+        backgroundColor: 'white',
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false,
+        zoomControl: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+        },
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#dde6e8"},{"visibility":"on"}]}]
+      }
+
+
+
+
         handler = Gmaps.build('Google');
-        handler.buildMap({ internal: { id: 'map' } }, function(){
+        handler.buildMap({ provider: mapOptions, internal: { id: 'map' } }, function(){
           markers = handler.addMarkers(<%= raw @markers.to_json %>);
           handler.bounds.extendWith(markers);
           handler.fitMapToBounds();
