@@ -1,11 +1,11 @@
 
 <div class="card-info">
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>');">
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>'); margin: 2px;">
 
     <div class="card-category text-left"><%= booking_alert %>
 
     </div>
-      <div class="card-description">
+      <div class="card-with-modal">
         <!-- <p>Details: <%= booking.shooting_details %></p> -->
           <% if current_user.id == booking.photog_id %>
             <div class="flex-container">
@@ -14,22 +14,22 @@
                   <%= f.error_notification %>
 
                   <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
-                  <%= f.button :submit, value:'ACCEPT',class:"btn btn-transparent btn-sm" %>
+                  <%= f.button :submit, value:'ACCEPT',class:"btn btn-transparent btn-xs" %>
                 <% end %>
               </div>
               <div class="flex-item" >
-
-
-                  <%= link_to "Reply", edit_user_booking_path(booking.client_id, booking.id),class:"btn btn-default btn btn-transparent btn-sm" %>
-
-
+                <!-- Modale -->
+                <% photog = current_user %>
+                <% client = User.find(booking.client_id) %>
+                <%= render 'modal_booking', booking: booking, client: client, photog: photog  %>
+                <!-- Modale -->
               </div>
               <div class="flex-item">
                 <%= simple_form_for([current_user, booking]) do |f| %>
                   <%= f.error_notification %>
 
                   <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
-                  <% @cancel_msg = "Cancel" %>
+                  <% @cancel_msg = "Refuse" %>
 
                 <% end %>
               </div>
@@ -48,7 +48,7 @@
       <div class="card-booking-link"></div>
     <% end %>
   </div>
-  <div class="text-left card-details" style="padding:10px 0px 3px 10px;">
+  <div class="text-left card-details" style="padding-left:10px;">
     <p >Shoot on: <%= booking.shooting_on.strftime('%a %e %b %Y') %>
     <br>
     For: <%= booking.client_needs %>
@@ -61,7 +61,7 @@
         <%= "With: #{photog.first_name} #{photog.last_name}" %>
       <% end %>
 
-      <%= link_to @cancel_msg, user_booking_path(booking.client_id, booking.id), method: :delete, data: {confirm: 'This will delete this booking. Do you confirm?'}, class:'btn btn-danger btn-transparent btn-xs' %>
+      <%= link_to @cancel_msg, user_booking_path(booking.client_id, booking.id), method: :delete, data: {confirm: 'This will delete this booking. Do you confirm?'}, class:'btn btn-default btn-xs' %>
   </div>
 </div>
 
