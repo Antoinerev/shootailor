@@ -35,12 +35,14 @@
               </div>
             </div>
           <% else %>
+          <!-- If current_user is a client -->
             <% if booking.shooting_details? %>
             <%= "#{photog.first_name} says: #{booking.shooting_details[0..30]}" %>
             <%= "[...]" if booking.shooting_details.length > 31 %>
             <% end %>
             <% @cancel_msg = "Cancel" %>
           <% end %>
+
       </div>
 
     <%= image_tag photog.profile_pict, class: "card-user avatar"%>
@@ -61,7 +63,7 @@
         <%= "With: #{photog.first_name} #{photog.last_name}" %>
       <% end %>
 
-      <%= link_to @cancel_msg, user_booking_path(booking.client_id, booking.id), method: :delete, data: {confirm: 'This will delete this booking. Do you confirm?'}, class:'btn btn-default btn-xs' %>
+      <%= link_to @cancel_msg, user_booking_path(booking.client_id, booking.id), method: :delete, remote: true, data: {confirm: 'This will delete this booking. Do you confirm?'}, class:'btn btn-default btn-xs' %>
   </div>
 </div>
 

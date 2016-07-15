@@ -52,7 +52,12 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to user_bookings_path(current_user)
+    respond_to do |format|
+      format.html { redirect_to user_bookings_path(current_user) }
+      format.js  # <-- will render `app/views/reviews/create.js.erb`
+    end
+
+
   end
 
   private

@@ -9,8 +9,10 @@
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
     <% booking.status == "new" ? booking_alert = "<p style='color: red;'>NEW!</p>".html_safe : booking_alert ="<p style='color: yellow;'>UPDATED!</p>".html_safe %>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-      <%= render 'booking_card_content', booking: booking, photog: photog, client: client, booking_alert: booking_alert %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" >
+      <div id="booking-<%= booking.id %>">
+        <%= render 'booking_card_content', booking: booking, photog: photog, client: client, booking_alert: booking_alert %>
+      </div>
     </div>
   <% end %>
 </div>
