@@ -9,6 +9,12 @@ class UsersController < ApplicationController
       @location_search = params[:location].downcase
       @photogs = @photogs.select { |photog| photog.address.downcase.include?(@location_search) }
     end
+
+    @markers = Gmaps4rails.build_markers(@photogs) do |photog, marker|
+      marker.lat photog.latitude
+      marker.lng photog.longitude
+    end
+
   end
 
   def show

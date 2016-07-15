@@ -13,6 +13,10 @@
     <%= render 'shared/navbar_login' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+
+    <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&sensor=false" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js" %>
+
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js) %>
     <%= cloudinary_js_config %>
