@@ -14,7 +14,7 @@
                   <%= f.error_notification %>
 
                   <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
-                  <%= f.button :submit, value:'Accept',class:"btn btn-transparent btn-xs" %>
+                  <%= f.button :submit, value:'ACCEPT',class:"btn btn-transparent btn-xs" %>
                 <% end %>
               </div>
               <div class="flex-item" >
@@ -29,14 +29,17 @@
                   <%= f.error_notification %>
 
                   <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
-                  <%= f.button :submit, value:'Refuse',class:"btn btn-transparent btn-xs" %>
+                  <% @cancel_msg = "Refuse" %>
+
                 <% end %>
               </div>
             </div>
           <% else %>
-            <%= "#{photog.first_name} says:" %>
-            <%= booking.shooting_details %>
-            <br>
+            <% if booking.shooting_details? %>
+            <%= "#{photog.first_name} says: #{booking.shooting_details[0..30]}" %>
+            <%= "[...]" if booking.shooting_details.length > 31 %>
+            <% end %>
+            <% @cancel_msg = "Cancel" %>
           <% end %>
       </div>
 
@@ -45,7 +48,7 @@
       <div class="card-booking-link"></div>
     <% end %>
   </div>
-  <div class="text-left" style="padding-left:10px;">
+  <div class="text-left card-details" style="padding-left:10px;">
     <p >Shoot on: <%= booking.shooting_on.strftime('%a %e %b %Y') %>
     <br>
     For: <%= booking.client_needs %>
@@ -57,6 +60,8 @@
       <% else %>
         <%= "With: #{photog.first_name} #{photog.last_name}" %>
       <% end %>
+
+      <%= link_to @cancel_msg, user_booking_path(booking.client_id, booking.id), method: :delete, data: {confirm: 'This will delete this booking. Do you confirm?'}, class:'btn btn-default btn-xs' %>
   </div>
 </div>
 
