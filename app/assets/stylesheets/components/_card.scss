@@ -85,6 +85,33 @@
 .card-description p {
   font-size: 17px;
   }
+
+.card-with-modal {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  text-transform: none;
+  font-size: 15px;
+  color: black;
+  text-shadow: none;
+  text-align:left;
+  }
+
+.modal-text {
+  text-transform: none;
+  font-size: 15px;
+  color: black;
+  text-shadow: none;
+  text-align:left;
+}
+
+.card-with-modal .white_shad {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  color: white;
+  font-size: 12px;
+  // text-transform: uppercase;
+}
+
 .card-link {
   position: absolute;
   top: 0;
