@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :shootings, class_name: 'Booking', foreign_key: 'photog_id'
 
   has_attachments :portfolios, maximum: 6
+  has_attachment :avatar, maximum: 1
 
   # Include default devise modules. Others available are:
    # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -26,8 +27,14 @@ class User < ActiveRecord::Base
 
   def profile_pict
     self.avatar = nil if self.avatar ==""
+    # raise if self.avatar
     default_pict = "http://res.cloudinary.com/dujnmeiiu/image/upload/v1468402123/empty-avatar_qeezog.jpg"
-    self.avatar || self.picture || default_pict
+    url = "http://res.cloudinary.com/dujnmeiiu/image/upload/"
+    return url + self.avatar.path if self.avatar
+    self.picture || default_pict
+
+
+
   end
 
   def photog_card_background
