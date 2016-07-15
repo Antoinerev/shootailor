@@ -1,24 +1,31 @@
-<div class="text-center">
-    <h1>Find your photographer</h1>
+<div class="element-background" style="background: #E5EAED;">
+
+  <div class="banner-index-page" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.2) 50%), url('http://res.cloudinary.com/dujnmeiiu/image/upload/v1468500032/camera_viyviy.jpg');">
+    <div class="banner-content">
+      <h3>Your next memory is around the corner</h3>
+    </div>
   </div>
-  <hr>
-  <div class="container">
-    <% if @location_search  %>
-      <div class="row text-center">
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-          <%= link_to "See all", users_path, class:"btn btn-primary btn-xs" %>
+  <div class="element-body">
+    <div class="container">
+      <% if @location_search  %>
+        <div class="row text-center">
+          <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <%= link_to "See all", users_path, class:"btn btn-primary btn-xs" %>
+          </div>
         </div>
-      </div>
 
-      <div class="row text-center">
-        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-          <%= "Results for Photographers in #{@location_search}"%>
+        <div class="row text-center">
+          <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+            <%= "Results for Photographers in #{@location_search}"%>
 
-          <hr>
+            <hr>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
 
-    <%= render 'photog_card' %>
+      <%= render 'photog_card' %>
+
+    </div>
+  </div>
+
 </div>
-

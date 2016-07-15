@@ -10,6 +10,11 @@
   align-items: center;
   justify-content: center;
 }
+.card:hover {
+  position: relative;
+  bottom: -5px;
+  right: -5px;
+}
 .card-user {
   position: absolute;
   right: 10px;
