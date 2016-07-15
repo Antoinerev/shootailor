@@ -1,64 +1,64 @@
 
-
+<div class="card-info">
   <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>'); margin: 2px;">
 
     <div class="card-category text-left"><%= booking_alert %>
-      <p >Shoot on: <%= booking.shooting_on.strftime('%a %e %b %Y') %></p>
-      <br>
-      <p>For: <%= booking.client_needs %> </p>
-      <p>Price: <%= booking.shooting_price %> €</p>
-      <p>
-        <% if current_user.photog? %>
-          <%= "With: #{client.first_name} #{client.last_name}" %>
-        <% else %>
-          <%= "With: #{photog.first_name} #{photog.last_name}" %>
-        <% end %>
-      </p>
+
     </div>
-    <div class="card-description">
-      <!-- <p>Details: <%= booking.shooting_details %></p> -->
-        <% if current_user.id == booking.photog_id %>
-          <div class="flex-container">
-            <div class="flex-item">
-              <%= simple_form_for([current_user, booking]) do |f| %>
-                <%= f.error_notification %>
+      <div class="card-description">
+        <!-- <p>Details: <%= booking.shooting_details %></p> -->
+          <% if current_user.id == booking.photog_id %>
+            <div class="flex-container">
+              <div class="flex-item">
+                <%= simple_form_for([current_user, booking]) do |f| %>
+                  <%= f.error_notification %>
 
-                <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
-                <%= f.button :submit, value:'Accept',class:"btn btn-transparent btn-xs" %>
-              <% end %>
-            </div>
-            <div class="flex-item" >
-
-              <div class="btn btn-transparent btn-xs">
-                <%= link_to "Reply", edit_user_booking_path(booking.client_id, booking.id) %>
+                  <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
+                  <%= f.button :submit, value:'Accept',class:"btn btn-transparent btn-xs" %>
+                <% end %>
               </div>
+              <div class="flex-item" >
 
-            </div>
-            <div class="flex-item">
-              <%= simple_form_for([current_user, booking]) do |f| %>
-                <%= f.error_notification %>
 
-                <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
-                <%= f.button :submit, value:'Refuse',class:"btn btn-transparent btn-xs" %>
-              <% end %>
+                  <%= link_to "Reply", edit_user_booking_path(booking.client_id, booking.id),class:"btn btn-default btn btn-transparent btn-xs" %>
+
+
+              </div>
+              <div class="flex-item">
+                <%= simple_form_for([current_user, booking]) do |f| %>
+                  <%= f.error_notification %>
+
+                  <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
+                  <%= f.button :submit, value:'Refuse',class:"btn btn-transparent btn-xs" %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% else %>
-          <%= "#{photog.first_name} says:" %>
-          <%= booking.shooting_details %>
-          <br>
-        <% end %>
-    </div>
+          <% else %>
+            <%= "#{photog.first_name} says:" %>
+            <%= booking.shooting_details %>
+            <br>
+          <% end %>
+      </div>
+
     <%= image_tag photog.profile_pict, class: "card-user avatar"%>
     <%= link_to user_booking_path(client.id, booking.id) do %>
       <div class="card-booking-link"></div>
     <% end %>
-
-
-
-
   </div>
-
+  <div class="text-left" style="padding-left:10px;">
+    <p >Shoot on: <%= booking.shooting_on.strftime('%a %e %b %Y') %>
+    <br>
+    For: <%= booking.client_needs %>
+    <br>
+    Price: <%= booking.shooting_price %> €
+    <br>
+      <% if current_user.photog? %>
+        <%= "With: #{client.first_name} #{client.last_name}" %>
+      <% else %>
+        <%= "With: #{photog.first_name} #{photog.last_name}" %>
+      <% end %>
+  </div>
+</div>
 
 
 
