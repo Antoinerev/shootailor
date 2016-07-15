@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_photog, only: [:show]
   def index
     # @users = User.all
     @photogs = User.select { |user| user.photog? }
@@ -11,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @booking = Booking.new()
+    @client = current_user
   end
 
   def new
@@ -40,6 +42,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_photog
+    @photog = User.find(params[:id])
   end
 
 end

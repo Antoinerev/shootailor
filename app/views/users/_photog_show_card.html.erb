@@ -17,7 +17,42 @@
               <% if @user == current_user %>
                 <%= link_to "Edit", edit_user_path(@user), class:"btn btn-primary", style:"width: 100%;" %>
               <% else %>
-                <%= link_to "Book now", new_user_booking_path(@user), class:"btn btn-danger", style:"width: 100%;" %>
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModaltest">
+                Book now
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModaltest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel" style="color: black;">New booking with <%= @user.first_name %> <%= @user.last_name %></h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= simple_form_for([current_user, @booking]) do |f| %>
+                        <%= f.error_notification %>
+
+                        <%= f.input :client_id, input_html: { value: current_user.id }, as: "hidden"  %>
+                        <%= f.input :photog_id, input_html: { value: @photog.id }, as: "hidden" %>
+
+                        <%= f.input :client_needs, placeholder: 'Describe your expectations' %>
+                        <%= f.input :shooting_location, placeholder:'Where is your shooting?' %>
+                        <%= f.input :shooting_on %>
+                        <%= f.input :shooting_price, placeholder: 'What is your budget?' %>
+                        <%= f.input :shooting_details, disabled: true, placeholder: "To be filled by the photographer" %>
+                        <%= f.input :status, as:"hidden", input_html: {value: 'new'} %>
+                        <%= f.button :submit, class: "btn btn-primary" %>
+                      <% end %>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
               <% end %>
             </div>
           </div>
@@ -27,6 +62,7 @@
       </div>
   </div>
 </div>
+
 
 
 <div class="container">
@@ -104,3 +140,4 @@
 </div>
 
 </div>
+
