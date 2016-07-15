@@ -1,7 +1,7 @@
 <div class="row">
   <% @photogs.each do |photog| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>');">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path photog.photog_card_background %>'); border: solid 7px white;">
 
           <div class="card-category">Popular</div>
           <div class="card-description">
