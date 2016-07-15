@@ -14,13 +14,13 @@
                   <%= f.error_notification %>
 
                   <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
-                  <%= f.button :submit, value:'ACCEPT',class:"btn btn-transparent btn-xs" %>
+                  <%= f.button :submit, value:'ACCEPT',class:"btn btn-transparent btn-sm" %>
                 <% end %>
               </div>
               <div class="flex-item" >
 
 
-                  <%= link_to "Reply", edit_user_booking_path(booking.client_id, booking.id),class:"btn btn-default btn btn-transparent btn-xs" %>
+                  <%= link_to "Reply", edit_user_booking_path(booking.client_id, booking.id),class:"btn btn-default btn btn-transparent btn-sm" %>
 
 
               </div>
