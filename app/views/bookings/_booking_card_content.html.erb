@@ -7,46 +7,51 @@
     </div>
       <div class="card-with-modal">
         <!-- <p>Details: <%= booking.shooting_details %></p> -->
-          <% if current_user.id == booking.photog_id %>
-            <div class="flex-container">
-              <div class="flex-item">
-                <%= simple_form_for([current_user, booking]) do |f| %>
-                  <%= f.error_notification %>
+        <% if current_user.id == booking.photog_id %>
+          <div class="flex-container">
+            <div class="flex-item">
+              <%= simple_form_for([current_user, booking]) do |f| %>
+                <%= f.error_notification %>
 
-                  <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
-                  <%= f.button :submit, value:'ACCEPT',class:"btn btn-transparent btn-xs" %>
-                <% end %>
-              </div>
-              <div class="flex-item" >
-                <!-- Modale -->
-                <% photog = current_user %>
-                <% client = User.find(booking.client_id) %>
-                <%= render 'modal_booking', booking: booking, client: client, photog: photog  %>
-                <!-- Modale -->
-              </div>
-              <div class="flex-item">
-                <%= simple_form_for([current_user, booking]) do |f| %>
-                  <%= f.error_notification %>
-
-                  <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
-                  <% @cancel_msg = "Refuse" %>
-
-                <% end %>
-              </div>
+                <%= f.input :status, input_html: {value: 'accepted'}, as:'hidden' %>
+                <%= f.button :submit, value:'ACCEPT',class:"btn btn-transparent btn-xs" %>
+              <% end %>
             </div>
-          <% else %>
-            <% if booking.shooting_details? %>
-            <%= "#{photog.first_name} says: #{booking.shooting_details[0..30]}" %>
-            <%= "[...]" if booking.shooting_details.length > 31 %>
-            <% end %>
-            <% @cancel_msg = "Cancel" %>
+            <div class="flex-item" >
+              <!-- Modale -->
+
+              <%= render 'modal_booking', booking: booking, client: client, photog: photog  %>
+              <!-- Modale -->
+            </div>
+            <div class="flex-item">
+              <%= simple_form_for([current_user, booking]) do |f| %>
+                <%= f.error_notification %>
+
+                <%= f.input :status, input_html: {value: 'canceled'}, as:'hidden' %>
+                <% @cancel_msg = "Decline" %>
+
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <% if booking.shooting_details? %>
+            <div class="white_shad">
+              <%= "#{photog.first_name} says: #{booking.shooting_details[0..30]}" %>
+              <%= "[...]" if booking.shooting_details.length > 31 %>
+              </div>
           <% end %>
+          <% @cancel_msg = "Cancel" %>
+        <% end %>
       </div>
 
-    <%= image_tag photog.profile_pict, class: "card-user avatar"%>
-    <%= link_to user_booking_path(client.id, booking.id) do %>
-      <div class="card-booking-link"></div>
-    <% end %>
+      <%= image_tag photog.profile_pict, class: "card-user avatar"%>
+
+
+
+      <button type="button" style="opacity:0;" data-toggle="modal" data-target="#myModalBookingEdit">
+        <div class="card-booking-link"></div>
+      </button>
+
   </div>
   <div class="text-left card-details" style="padding-left:10px;">
     <p >Shoot on: <%= booking.shooting_on.strftime('%a %e %b %Y') %>
