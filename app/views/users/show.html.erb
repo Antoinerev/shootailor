@@ -1,11 +1,11 @@
 <div class="element-background" style="background: #E5EAED; height: 100%; color: #4C4C4C;">
-<div class="container">
+<!-- <div class="container"> -->
   <% if @user.photog? %>
         <%= render 'photog_show_card' %>
       <% else %>
         <%= render 'client_show_card' %>
   <% end %>
-</div>
+<!-- </div> -->
 
 <%= content_for(:after_js) do %>
   <script type="text/javascript">
