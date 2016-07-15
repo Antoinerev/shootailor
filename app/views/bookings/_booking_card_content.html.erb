@@ -7,7 +7,7 @@
     </div>
       <div class="card-with-modal">
         <!-- <p>Details: <%= booking.shooting_details %></p> -->
-        <% if current_user.id == booking.photog_id %>
+        <% if current_user == photog %>
           <div class="flex-container">
             <div class="flex-item">
               <%= simple_form_for([current_user, booking]) do |f| %>
@@ -20,6 +20,10 @@
             <div class="flex-item" >
               <!-- Modale -->
 
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-default btn btn-transparent btn-xs" data-toggle="modal" data-target="#myModalBookingEdit-<%= booking.id %>">
+                Edit
+              </button>
               <%= render 'modal_booking', booking: booking, client: client, photog: photog  %>
               <!-- Modale -->
             </div>
@@ -34,24 +38,31 @@
             </div>
           </div>
         <% else %>
-          <% if booking.shooting_details? %>
+          <% if booking.shooting_details %>
             <div class="white_shad">
               <%= "#{photog.first_name} says: #{booking.shooting_details[0..30]}" %>
               <%= "[...]" if booking.shooting_details.length > 31 %>
               </div>
           <% end %>
           <% @cancel_msg = "Cancel" %>
+          <!-- Modale -->
+          <% client = current_user %>
+          <% photog = User.find(booking.photog_id) %>
+          <%= render 'modal_booking', booking: booking, client: client, photog: photog  %>
+          <!-- Modale -->
         <% end %>
       </div>
 
       <%= image_tag photog.profile_pict, class: "card-user avatar"%>
 
+      <div class="modal-text ">
 
 
-      <button type="button" style="opacity:0;" data-toggle="modal" data-target="#myModalBookingEdit">
-        <div class="card-booking-link"></div>
-      </button>
+        <button type="button" style="opacity:0;" data-toggle="modal" data-target="#myModalBookingEdit-<%= booking.id %>">
+          <div class="card-booking-link"></div>
+        </button>
 
+      </div>
   </div>
   <div class="text-left card-details" style="padding-left:10px;">
     <p >Shoot on: <%= booking.shooting_on.strftime('%a %e %b %Y') %>
