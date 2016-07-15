@@ -18,6 +18,8 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+gem "geocoder"
+
 # images management
 gem "cloudinary"
 gem "attachinary"
