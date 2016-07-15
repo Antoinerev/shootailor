@@ -5,7 +5,7 @@
 </div>
 
 <div class="row text-center" style="height: 200px;">
-  <% @bookings_new.each do |booking| %>
+  <% @bookings_new.reverse_each do |booking| %>
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
     <% booking.status == "new" ? booking_alert = "<p style='color: red;'>NEW!</p>".html_safe : booking_alert ="<p style='color: yellow;'>UPDATED!</p>".html_safe %>
@@ -21,7 +21,7 @@
   </div>
 </div>
 <div class="row" style="height: 200px;">
-  <% @bookings_accepted.each do |booking| %>
+  <% @bookings_accepted.reverse_each do |booking| %>
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
     <% booking_alert = "" %>
@@ -37,7 +37,7 @@
   </div>
 </div>
 <div class="row" style="height: 200px;">
-  <% @bookings_pending.each do |booking| %>
+  <% @bookings_pending.reverse_each do |booking| %>
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
     <% booking_alert = "<p style='color: green;'>pending</p>".html_safe %>
@@ -53,7 +53,7 @@
   </div>
 </div>
 <div class="row" style="height: 200px;">
-  <% @bookings_archived.each do |booking| %>
+  <% @bookings_archived.reverse_each do |booking| %>
     <% photog = User.find(booking.photog_id) %>
     <% client = User.find(booking.client_id) %>
     <% booking_alert = "Archived" %>
