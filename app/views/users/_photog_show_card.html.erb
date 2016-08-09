@@ -132,6 +132,9 @@
     <div class="profile-description text-center">
       <h3>About <%= @user.first_name %></h3>
       <p style="margin-bottom: 20px;"><%= "#{@user.bio}" %></p>
+      <% unless @user.tags.empty? %>
+        <p>Specialties: <em><%= @user.tags %></em></p>
+      <% end %>
       <% if @user != current_user && @user.portfolios.first %>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModaltest">
           Book <%= @user.first_name %> now
