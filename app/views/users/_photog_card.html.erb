@@ -6,7 +6,9 @@
           <div class="card-category">Popular</div>
           <div class="card-description">
             <h2><%= photog.first_name %> <%= photog.last_name %></h2>
-            <p>#tag, #tag, #tag</p>
+            <% unless photog.tags.nil? || photog.tags.empty? %>
+              <p><em><%= photog.tags %></em></p>
+            <% end %>
           </div>
           <%= image_tag photog.profile_pict, class: "card-user avatar"%>
           <%= link_to user_path(photog.id) do %>
